@@ -41,4 +41,4 @@ You may use any Python libraries and technologies of your choice, but we would l
 
 - do not hesitate to ask us any questions
 - don't worry if you can't finish all aspects of the task - make notes on where you got stuck and why
-- it's all about conveying to what your process was when tackling the challenge
+- it's all about conveying to us what your process was when tackling the challenge
