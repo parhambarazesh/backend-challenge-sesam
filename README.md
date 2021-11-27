@@ -23,9 +23,9 @@ For this task we'll be building a very simple Python 3-based REST API server and
 
 The API server should have a single root endpoint, `/datasets/`, that allows list and CRUD operations over a dataset object via the following API / HTTP verbs:
 
- - `GET /datasets/` - list the uploaded datasets
+ - `GET /datasets/` - list the ids of the uploaded datasets and their corresponding file sizes
  - `POST /datasets/` - creates a dataset. This endpoint takes a JSON file as input, and stores it somewhere/how on the server. A reference to this created object is returned by the endpoint, for instance an `id` or `url`.
- - `GET /datasets/<id>/` - return the file name, and size of the dataset object
+ - `GET /datasets/<id>/` - return the particular dataset
  - `DELETE /datasets/<id>/` - delete the dataset object
  - `GET /datasets/<id>/excel/` - export the dataset as an excel file
 
