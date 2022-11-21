@@ -6,7 +6,6 @@ import os
 def get_all_datasets_from_file():
     dataset_path=path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"
     dataset_list=os.listdir(dataset_path)
-    # check if dataset exists
     if len(dataset_list)==0:
         return {'status': 'No Datasets Found', 'dataset_info':[],'Code':404}
     dataset_info_list=[]
@@ -22,7 +21,6 @@ def get_all_datasets_from_file():
 
 def get_dataset_by_id_from_file(id):
     dataset_path=path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"+os.sep+id
-    # check if dataset exists
     if not path.exists(dataset_path):
         return {'status': 'Dataset Not Found', 'dataset_info':[],'Code':404}
     dataset_info={}
