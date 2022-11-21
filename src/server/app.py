@@ -4,6 +4,8 @@ sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from src.server.create_dataset import *
 from src.server.get_dataset import *
+from src.server.delete_dataset import *
+from src.server.export import *
 
 app=Flask(__name__)
 
@@ -32,7 +34,13 @@ def get_dataset_by_id(dataset_id):
 @app.route('/datasets/<dataset_id>', methods=['DELETE'])
 def delete_dataset_by_id(dataset_id):
     if request.method == 'DELETE':
-        delete_dataset_by_id_from_file(dataset_id)
-        return {'status': 'Dataset successfully deleted','Code':200}
+        response=delete_dataset_by_id_from_file(dataset_id)
+        return response
+
+@app.route('/datasets/<dataset_id>/excel', methods=['GET'])
+def export_dataset_to_excel(dataset_id):
+    if request.method == 'GET':
+        response=export_dataset_to_excel_from_file(dataset_id)
+        return response
 if __name__ == '__main__':
     app.run()
