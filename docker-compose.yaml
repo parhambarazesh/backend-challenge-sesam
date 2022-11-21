@@ -1,0 +1,7 @@
+version: '3'
+name: 'sesam'
+services:
+  backendchallenge:
+    build: .
+    ports:
+      - "5000:5000"
