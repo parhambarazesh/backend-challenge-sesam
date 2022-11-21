@@ -6,7 +6,8 @@ __pycache__/
 uploaded_datasets
 # C extensions
 *.so
-
+*.xlsx
+*.ipynb
 # Distribution / packaging
 .Python
 build/
