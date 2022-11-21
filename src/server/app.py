@@ -43,4 +43,8 @@ def export_dataset_to_excel(dataset_id):
         response=export_dataset_to_excel_from_file(dataset_id)
         return response
 if __name__ == '__main__':
-    app.run()
+    if not path.exists(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"):
+        os.mkdir(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets")
+    if not path.exists(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"exported_datasets"):
+        os.mkdir(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"exported_datasets")
+    app.run(host='0.0.0.0', port=5000)
