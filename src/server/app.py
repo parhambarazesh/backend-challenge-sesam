@@ -1,11 +1,11 @@
 import sys
 import os.path as path
 sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, request
 from src.server.create_dataset import *
 from src.server.get_dataset import *
 from src.server.delete_dataset import *
-from src.server.export import *
+from src.server.export_dataset import *
 
 app=Flask(__name__)
 
@@ -42,9 +42,11 @@ def export_dataset_to_excel(dataset_id):
     if request.method == 'GET':
         response=export_dataset_to_excel_from_file(dataset_id)
         return response
+        
 if __name__ == '__main__':
+    current_dir = path.dirname(path.abspath(__file__))
     if not path.exists(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"):
         os.mkdir(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets")
     if not path.exists(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"exported_datasets"):
         os.mkdir(path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"exported_datasets")
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000,ssl_context=(f'{current_dir}/secrets/cert.pem', f'{current_dir}/secrets/key.pem'))
