@@ -14,8 +14,6 @@ def get_all_datasets_from_file():
         dataset_info={}
         dataset_info['dataset_id']=dataset
         dataset_info['dataset_size']=os.path.getsize(dataset_path+os.sep+dataset)
-        dataset_info['last_modified']=datetime.datetime.fromtimestamp(os.path.getmtime(dataset_path+os.sep+dataset)).strftime('%Y-%m-%d %H:%M:%S')
-        dataset_info['number_of_files']=len(os.listdir(dataset_path+os.sep+dataset))
         dataset_info_list.append(dataset_info)
     return {'status': 'Datasets successfully obtained', 'dataset_info':dataset_info_list,'Code':200}
 
