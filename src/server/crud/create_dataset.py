@@ -5,10 +5,13 @@ from uuid import uuid4
 
 from src.db_connector.mongodb import store_dataset
 
+def get_dataset_path():
+    return path.dirname(path.dirname(path.dirname(path.abspath(__file__))))+os.sep+"uploaded_datasets"
+
 def create_and_save_dataset_as_file(json_list):
     try:
         dataset_id=str(uuid4())
-        dataset_path=path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"+os.sep+dataset_id
+        dataset_path=get_dataset_path()+os.sep+dataset_id
         if not path.exists(dataset_path):
             os.makedirs(dataset_path)
         object_id_list=[]

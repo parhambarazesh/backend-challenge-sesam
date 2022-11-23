@@ -2,10 +2,15 @@ import sys
 import os.path as path
 sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
 from flask import Flask, request
-from src.server.create_dataset import *
-from src.server.get_dataset import *
-from src.server.delete_dataset import *
-from src.server.export_dataset import *
+# from src.server.create_dataset import *
+# from src.server.get_dataset import *
+# from src.server.delete_dataset import *
+# from src.server.export_dataset import *
+
+from src.server.crud.create_dataset import *
+from src.server.crud.get_dataset import *
+from src.server.crud.delete_dataset import *
+from src.server.crud.export_dataset import *
 
 app=Flask(__name__)
 

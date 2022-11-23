@@ -3,9 +3,15 @@ import os
 import os.path as path
 import pandas as pd
 
+def get_dataset_path():
+    return path.dirname(path.dirname(path.dirname(path.abspath(__file__))))+os.sep+"uploaded_datasets"
+
+def get_exported_dataset_path():
+    return path.dirname(path.dirname(path.dirname(path.abspath(__file__))))+os.sep+"exported_datasets"
+
 def export_dataset_to_excel_from_file(id):
-    dataset_path=path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"uploaded_datasets"+os.sep+id
-    path_to_save=path.dirname(path.dirname(path.abspath(__file__)))+os.sep+"exported_datasets"+os.sep+id+".xlsx"
+    dataset_path=get_dataset_path()+os.sep+id
+    path_to_save=get_exported_dataset_path()+os.sep+id+".xlsx"
     if path.exists(dataset_path):
         files=os.listdir(dataset_path)
         df=pd.DataFrame()
