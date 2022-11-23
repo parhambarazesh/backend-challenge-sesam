@@ -1,5 +1,6 @@
 import os
 import click
+import json
 import requests
 import ast
 from src.client.settings import *
@@ -15,38 +16,38 @@ def all_commands():
     pass
 
 @click.command()
-@click.option('--datasetfile',type=str)
+@click.option('--datasetfile',type=str,help='dataset file url')
 def postdataset(datasetfile):
     if datasetfile:
         with open(datasetfile, 'r') as f:
             dataset = f.read()
         response=requests.post(url, json=ast.literal_eval(dataset), verify=get_cert())
-        click.echo(response.json())
+        click.echo(json.dumps(response.json(), indent=4))
 
 @click.command()
-@click.option('--all', is_flag=True)
-@click.option('--id', type=str)
+@click.option('--all', is_flag=True, help='obtains all datasets')
+@click.option('--id', type=str, help='id of the dataset to obtain')
 def getdataset(all,id):
     if all:
         response=requests.get(url,verify=get_cert())
-        click.echo(response.json())
+        click.echo(json.dumps(response.json(), indent=4))
     elif id:
         response=requests.get(url+"/"+id,verify=get_cert())
-        click.echo(response.json())
+        click.echo(json.dumps(response.json(), indent=4))
 
 @click.command()
-@click.option('--id', type=str)
+@click.option('--id', type=str, help='id of dataset to delete')
 def deletedataset(id):
     if id:
         response=requests.delete(url+"/"+id,verify=get_cert())
-        click.echo(response.json())
+        click.echo(json.dumps(response.json(), indent=4))
 
 @click.command()
-@click.option('--id', type=str)
+@click.option('--id', type=str, help='id of dataset to export')
 def exportdataset(id):
     if id:
         response=requests.get(url+"/"+id+'/excel',verify=get_cert())
-        click.echo(response.json())
+        click.echo(json.dumps(response.json(), indent=4))
 
 
 all_commands.add_command(getdataset)
